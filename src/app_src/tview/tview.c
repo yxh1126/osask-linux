@@ -1,8 +1,8 @@
-#include "apilib.h"
+#include <apilib.h>
+#include <stdlib.h>
 
 #include <stdio.h>
 
-int strtol(char *s, char **endp, int base);	/* Standard function <stdlib.h> */
 
 char *skipspace(char *p);
 void textview(int win, int w, int h, int xskip, char *p, int tab, int lang);

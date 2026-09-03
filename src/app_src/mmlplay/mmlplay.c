@@ -1,8 +1,8 @@
-#include "apilib.h"
+#include <apilib.h>
+#include <stdlib.h>
 
 #include <string.h>	/* strlen */
 
-int strtol(char *s, char **endp, int base);	 /* standard function <stdlib.h> */
 
 void waittimer(int timer, int time);
 void end(char *s);

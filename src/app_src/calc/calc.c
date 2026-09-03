@@ -1,9 +1,9 @@
-#include "apilib.h"
+#include <apilib.h>
+#include <stdlib.h>
 #include <stdio.h>		/* sprintf */
 
 #define INVALID		-0x7fffffff
 
-int strtol(char *s, char **endp, int base);	/* standard function <stdlib.h> */
 
 char *skipspace(char *p);
 int getnum(char **pp, int priority);

@@ -67,7 +67,7 @@ $(APP).ld: $(BUILD)app.ld
 default: $(APP).hrb
 
 # --- C compile rule ---
-%.o: %.c $(APILIB)apilib.h $(STDLIB)stdlib.h Makefile
+%.o: %.c $(INCPATH)apilib.h $(INCPATH)stdlib.h Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # --- Assembly compile rule (for pure .nas apps like hello5) ---

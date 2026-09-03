@@ -18,7 +18,7 @@ default: stdlib.a
 stdlib.a: stdlib.o Makefile
 	$(AR) rcs $@ stdlib.o
 
-%.o: %.c ../stdlib.h ../apilib.h Makefile
+%.o: %.c ../include/stdlib.h ../include/apilib.h Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

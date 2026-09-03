@@ -3,7 +3,9 @@
 #if !defined(STDLIB_H)
 #define STDLIB_H 1
 
-#include <stddef.h>  /* size_t, NULL */
+#if !defined(NULL)
+#define NULL ((void *)0)
+#endif
 
 #if defined(__cplusplus)
 extern "C" {
