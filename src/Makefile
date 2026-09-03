@@ -10,13 +10,6 @@
 BUILD     = build/
 DEL       = rm -f
 
-# --- Tools / flags for build/libc.o (freestanding C library) ---
-CC        = gcc
-CFLAGS    = -m32 -ffreestanding -fno-pic -fno-pie -fno-stack-protector \
-            -fno-builtin -fno-exceptions -nostdlib -nostdinc \
-            -fno-asynchronous-unwind-tables -Wall -Wextra -O2 \
-            -Wno-array-bounds -Iinclude/
-
 # --- App directories (each has its own Makefile including ../app.mk) ---
 APPS = a hello3 hello4 hello5 winhelo winhelo2 winhelo3 \
        star1 stars stars2 lines walk noodle \
@@ -43,21 +36,15 @@ DATA_FILES = app/data/textdata/euc.txt \
 
 # --- 1. make: build all source code (kernel, libraries, apps) ---
 default: kernel/ipl10.bin kernel/haribote.sys \
-         lib/apilib.a lib/stdlib.a $(BUILD)libc.o $(APP_HRBS)
+         lib/apilib.a lib/stdlib.a lib/libc.o $(APP_HRBS)
 
 kernel/ipl10.bin kernel/haribote.sys:
 	$(MAKE) -C kernel
 
-lib/apilib.a lib/stdlib.a:
+lib/apilib.a lib/stdlib.a lib/libc.o:
 	$(MAKE) -C lib
 
-# Freestanding C library (memset/vsprintf/etc.) used by kernel and apps.
-# Explicit rule so it builds with proper CFLAGS (fixes -Wbuiltin-declaration-mismatch)
-# and so `make clean` removes it (the implicit cc rule left it orphaned).
-$(BUILD)libc.o: $(BUILD)libc.c Makefile
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(APP_HRBS): lib/apilib.a lib/stdlib.a kernel/haribote.sys
+$(APP_HRBS): lib/apilib.a lib/stdlib.a lib/libc.o kernel/haribote.sys
 	@dir=$(dir $@); $(MAKE) -C $$dir
 
 # --- 2. make img: generate the final boot floppy image ---
@@ -72,7 +59,7 @@ clean:
 	$(MAKE) -C kernel clean
 	$(MAKE) -C lib clean
 	@for d in $(APPS); do $(MAKE) -C app/$$d clean || true; done
-	-$(DEL) $(BUILD)libc.o haribote.img
+	-$(DEL) haribote.img
 
 # --- 4. make qemu: boot the image in QEMU ---
 qemu: img

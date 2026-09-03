@@ -11,6 +11,7 @@ DEL       = rm -f
 
 BUILD     = ../build/
 INCPATH   = ../include/
+LIBPATH   = ../lib/
 
 # --- Flags ---
 CFLAGS   = -m32 -ffreestanding -fno-pic -fno-pie -fno-stack-protector \
@@ -63,9 +64,9 @@ hankaku.o: hankaku.bin Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # --- Link kernel -> bootpack.hrb ---
-bootpack.hrb: $(OBJS_BOOTPACK) $(BUILD)hrb.ld $(BUILD)libc.o Makefile
+bootpack.hrb: $(OBJS_BOOTPACK) $(BUILD)hrb.ld $(LIBPATH)libc.o Makefile
 	$(LD) -m elf_i386 -T $(BUILD)hrb.ld -o $@ \
-		$(OBJS_BOOTPACK) $(BUILD)libc.o
+		$(OBJS_BOOTPACK) $(LIBPATH)libc.o
 
 # --- System image ---
 haribote.sys: asmhead.bin bootpack.hrb Makefile
