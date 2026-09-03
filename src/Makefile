@@ -35,11 +35,11 @@ APP_HRBS = app_src/a/a.hrb app_src/hello3/hello3.hrb app_src/hello4/hello4.hrb a
            app_src/calc/calc.hrb app_src/tview/tview.hrb app_src/mmlplay/mmlplay.hrb app_src/gview/gview.hrb
 
 # --- Data files copied onto the floppy image ---
-DATA_FILES = app_data/textdata/euc.txt \
-             app_data/mmldata/kirakira.mml app_data/mmldata/fujisan.mml \
-             app_data/mmldata/daigo.mml app_data/mmldata/daiku.mml \
-             app_data/pictdata/fujisan.jpg app_data/pictdata/night.bmp \
-             app_data/nihongo/nihongo.fnt
+DATA_FILES = app_src/data/textdata/euc.txt \
+             app_src/data/mmldata/kirakira.mml app_src/data/mmldata/fujisan.mml \
+             app_src/data/mmldata/daigo.mml app_src/data/mmldata/daiku.mml \
+             app_src/data/pictdata/fujisan.jpg app_src/data/pictdata/night.bmp \
+             app_src/data/nihongo/nihongo.fnt
 
 # --- 1. make: build all source code (kernel, libraries, apps) ---
 default: kernel/ipl10.bin kernel/haribote.sys \
