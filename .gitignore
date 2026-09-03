@@ -1,0 +1,29 @@
+# Build artifacts
+*.o
+*.a
+*.obj
+*.sys
+*.hrb
+*.bim
+*.lst
+*.map
+
+# Per-app linker scripts — generated from build/app.ld template by sed at build time.
+# Exception: build/app.ld and build/hrb.ld are source templates, NOT generated.
+*.ld
+!/build/app.ld
+!/build/hrb.ld
+
+# Flat binaries — build outputs (ipl10.bin, asmhead.bin, hankaku.bin, etc.)
+# Exception: jpn16v00.bin is a source data file (Japanese font), not a build output.
+*.bin
+!/nihongo/jpn16v00.bin
+
+# Boot image
+*.img
+
+# QEMU runtime
+/run/
+
+# Temporary preprocessed files
+*.clean.nas
