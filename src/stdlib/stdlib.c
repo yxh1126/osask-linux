@@ -1,5 +1,5 @@
-#include "../apilib.h"
-#include "../stdlib.h"
+#include "../apilib/apilib.h"
+#include "stdlib.h"
 #include <stdarg.h>
 #include <stdio.h>
 

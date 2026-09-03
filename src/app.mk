@@ -35,7 +35,7 @@ DEL       = rm -f
 CFLAGS   = -m32 -ffreestanding -fno-pic -fno-pie -fno-stack-protector \
            -fno-builtin -fno-exceptions -nostdlib -Wall -Wextra -O2 \
            -Wno-array-bounds \
-           -fno-asynchronous-unwind-tables -I$(INCPATH) -I../
+           -fno-asynchronous-unwind-tables -I$(INCPATH) -I$(APILIB) -I$(STDLIB) -I../
 # -Wno-array-bounds: gcc -O2 mis-reports fixed MMIO address casts
 # (e.g. (int *)0x0fe4) as zero-size array accesses. These are legitimate
 # bare-metal memory-mapped locations used by the OS and applications.
@@ -64,7 +64,7 @@ $(APP).ld: $(BUILD)app.ld
 default: $(APP).hrb
 
 # --- C compile rule ---
-%.o: %.c ../apilib.h ../stdlib.h Makefile
+%.o: %.c $(APILIB)apilib.h $(STDLIB)stdlib.h Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # --- Assembly compile rule (for pure .nas apps like hello5) ---
