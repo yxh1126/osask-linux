@@ -12,6 +12,7 @@ DEL       = rm -f
 BUILD     = ../build/
 INCPATH   = ../include/
 LIBPATH   = ../lib/
+LDPATH    = ../linker/
 
 # --- Flags ---
 CFLAGS   = -m32 -ffreestanding -fno-pic -fno-pie -fno-stack-protector \
@@ -64,8 +65,8 @@ hankaku.o: hankaku.bin Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # --- Link kernel -> bootpack.hrb ---
-bootpack.hrb: $(OBJS_BOOTPACK) $(BUILD)hrb.ld $(LIBPATH)libc.o Makefile
-	$(LD) -m elf_i386 -T $(BUILD)hrb.ld -o $@ \
+bootpack.hrb: $(OBJS_BOOTPACK) $(LDPATH)hrb.ld $(LIBPATH)libc.o Makefile
+	$(LD) -m elf_i386 -T $(LDPATH)hrb.ld -o $@ \
 		$(OBJS_BOOTPACK) $(LIBPATH)libc.o
 
 # --- System image ---

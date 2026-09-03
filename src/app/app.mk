@@ -20,6 +20,7 @@ BUILD      := $(SRCPATH)build/
 HARIBOTE   := $(SRCPATH)kernel/
 LIBPATH    := $(SRCPATH)lib/
 INCPATH    := $(SRCPATH)include/
+LDPATH     := $(SRCPATH)linker/
 
 # Make the .hrb the default goal when running `make -C <app_dir>`
 .DEFAULT_GOAL := $(APP).hrb
@@ -59,7 +60,7 @@ LIB_DEPS = $(LIBPATH)stdlib.a $(LIBPATH)apilib.a $(LIBPATH)libc.o
 LIBS = --start-group $(LIB_DEPS) --end-group
 
 # --- Per-app linker script generated from template ---
-$(APP).ld: $(BUILD)app.ld
+$(APP).ld: $(LDPATH)app.ld
 	sed -e 's/__STACK__/$(STACK_HEX)/' -e 's/__MALLOC__/$(MALLOC_HEX)/' $< > $@
 
 # --- Default target ---
