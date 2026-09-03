@@ -12,12 +12,12 @@
 
 # --- Tool paths ---
 # app.mk lives in src/app_src/; SRCPATH is src/app_src/, so the build
-# dirs (build/, haribote/, apilib/, stdlib/) are one level up in src/.
+# dirs (build/, kernel/, apilib/, stdlib/) are one level up in src/.
 APPSRCPATH := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 SRCPATH    := $(dir $(patsubst %/,%,$(APPSRCPATH)))
 ROOTPATH   := $(abspath $(SRCPATH))
 BUILD      := $(SRCPATH)build/
-HARIBOTE   := $(SRCPATH)haribote/
+HARIBOTE   := $(SRCPATH)kernel/
 APILIB     := $(SRCPATH)apilib/
 STDLIB     := $(SRCPATH)stdlib/
 INCPATH    := $(SRCPATH)build/haribote/

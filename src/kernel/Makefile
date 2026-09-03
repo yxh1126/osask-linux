@@ -1,4 +1,4 @@
-# Makefile for Haribote OS kernel (haribote/)
+# Makefile for Haribote OS kernel (kernel/)
 # Builds on Ubuntu using nasm + gcc -m32 + ld.
 
 # --- Tools ---

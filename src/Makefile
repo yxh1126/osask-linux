@@ -10,7 +10,7 @@
 BUILD     = build/
 DEL       = rm -f
 
-# --- App directories (each has its own Makefile including ../../app.mk) ---
+# --- App directories (each has its own Makefile including ../app.mk) ---
 APPS = a hello3 hello4 hello5 winhelo winhelo2 winhelo3 \
        star1 stars stars2 lines walk noodle \
        beepdown color color2 sosu sosu2 sosu3 \
@@ -35,11 +35,11 @@ DATA_FILES = app_data/textdata/euc.txt \
              app_data/nihongo/nihongo.fnt
 
 # --- 1. make: build all source code (kernel, libraries, apps) ---
-default: haribote/ipl10.bin haribote/haribote.sys \
+default: kernel/ipl10.bin kernel/haribote.sys \
          apilib/apilib.a stdlib/stdlib.a $(APP_HRBS)
 
-haribote/ipl10.bin haribote/haribote.sys:
-	$(MAKE) -C haribote
+kernel/ipl10.bin kernel/haribote.sys:
+	$(MAKE) -C kernel
 
 apilib/apilib.a:
 	$(MAKE) -C apilib
@@ -47,19 +47,19 @@ apilib/apilib.a:
 stdlib/stdlib.a:
 	$(MAKE) -C stdlib
 
-$(APP_HRBS): apilib/apilib.a stdlib/stdlib.a haribote/haribote.sys
+$(APP_HRBS): apilib/apilib.a stdlib/stdlib.a kernel/haribote.sys
 	@dir=$(dir $@); $(MAKE) -C $$dir
 
 # --- 2. make img: generate the final boot floppy image ---
 img: haribote.img
 
 haribote.img: default $(DATA_FILES) Makefile build/mkimg.sh
-	$(BUILD)mkimg.sh $@ haribote/ipl10.bin haribote/haribote.sys \
+	$(BUILD)mkimg.sh $@ kernel/ipl10.bin kernel/haribote.sys \
 		$(APP_HRBS) $(DATA_FILES)
 
 # --- 3. make clean: remove all build files and image ---
 clean:
-	$(MAKE) -C haribote clean
+	$(MAKE) -C kernel clean
 	$(MAKE) -C apilib clean
 	$(MAKE) -C stdlib clean
 	@for d in $(APPS); do $(MAKE) -C app_src/$$d clean || true; done
