@@ -11,13 +11,13 @@
 # Per-app linker scripts — generated from build/app.ld template by sed at build time.
 # Exception: build/app.ld and build/hrb.ld are source templates, NOT generated.
 *.ld
-!/build/app.ld
-!/build/hrb.ld
+!src/build/app.ld
+!src/build/hrb.ld
 
 # Flat binaries — build outputs (ipl10.bin, asmhead.bin, hankaku.bin, etc.)
 # Exception: jpn16v00.bin is a source data file (Japanese font), not a build output.
 *.bin
-!/nihongo/jpn16v00.bin
+!src/nihongo/jpn16v00.bin
 
 # Boot image
 *.img
