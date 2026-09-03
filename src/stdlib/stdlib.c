@@ -3,7 +3,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-/* Use the freestanding headers from build/haribote/ (included via -I path).
+/* Use the freestanding headers from include/ (included via -I path).
    These provide vsprintf/va_list declarations without pulling in libc. */
 
 int putchar(int c)

@@ -20,7 +20,7 @@ BUILD      := $(SRCPATH)build/
 HARIBOTE   := $(SRCPATH)kernel/
 APILIB     := $(SRCPATH)apilib/
 STDLIB     := $(SRCPATH)stdlib/
-INCPATH    := $(SRCPATH)build/haribote/
+INCPATH    := $(SRCPATH)include/
 
 # Make the .hrb the default goal when running `make -C <app_dir>`
 .DEFAULT_GOAL := $(APP).hrb

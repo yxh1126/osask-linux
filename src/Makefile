@@ -15,7 +15,7 @@ CC        = gcc
 CFLAGS    = -m32 -ffreestanding -fno-pic -fno-pie -fno-stack-protector \
             -fno-builtin -fno-exceptions -nostdlib -nostdinc \
             -fno-asynchronous-unwind-tables -Wall -Wextra -O2 \
-            -Wno-array-bounds -I$(BUILD)haribote/
+            -Wno-array-bounds -Iinclude/
 
 # --- App directories (each has its own Makefile including ../app.mk) ---
 APPS = a hello3 hello4 hello5 winhelo winhelo2 winhelo3 \

@@ -10,7 +10,7 @@ COPY      = cp
 DEL       = rm -f
 
 BUILD     = ../build/
-INCPATH   = ../build/haribote/
+INCPATH   = ../include/
 
 # --- Flags ---
 CFLAGS   = -m32 -ffreestanding -fno-pic -fno-pie -fno-stack-protector \

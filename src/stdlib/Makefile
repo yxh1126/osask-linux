@@ -6,7 +6,7 @@ AR        = ar
 DEL       = rm -f
 
 BUILD     = ../build/
-INCPATH   = ../build/haribote/
+INCPATH   = ../include/
 
 CFLAGS   = -m32 -ffreestanding -fno-pic -fno-pie -fno-stack-protector \
            -fno-builtin -fno-exceptions -nostdlib -nostdinc \
