@@ -10,22 +10,22 @@
 BUILD     = build/
 DEL       = rm -f
 
-# --- App directories (each has its own Makefile including ../app.mk) ---
+# --- App directories (each has its own Makefile including ../../app.mk) ---
 APPS = a hello3 hello4 hello5 winhelo winhelo2 winhelo3 \
        star1 stars stars2 lines walk noodle \
        beepdown color color2 sosu sosu2 sosu3 \
        type iroha chklang notrec bball invader \
        calc tview mmlplay gview
 
-APP_HRBS = a/a.hrb hello3/hello3.hrb hello4/hello4.hrb hello5/hello5.hrb \
-           winhelo/winhelo.hrb winhelo2/winhelo2.hrb winhelo3/winhelo3.hrb \
-           star1/star1.hrb stars/stars.hrb stars2/stars2.hrb \
-           lines/lines.hrb walk/walk.hrb noodle/noodle.hrb \
-           beepdown/beepdown.hrb color/color.hrb color2/color2.hrb \
-           sosu/sosu.hrb sosu2/sosu2.hrb sosu3/sosu3.hrb \
-           type/type.hrb iroha/iroha.hrb chklang/chklang.hrb \
-           notrec/notrec.hrb bball/bball.hrb invader/invader.hrb \
-           calc/calc.hrb tview/tview.hrb mmlplay/mmlplay.hrb gview/gview.hrb
+APP_HRBS = app_src/a/a.hrb app_src/hello3/hello3.hrb app_src/hello4/hello4.hrb app_src/hello5/hello5.hrb \
+           app_src/winhelo/winhelo.hrb app_src/winhelo2/winhelo2.hrb app_src/winhelo3/winhelo3.hrb \
+           app_src/star1/star1.hrb app_src/stars/stars.hrb app_src/stars2/stars2.hrb \
+           app_src/lines/lines.hrb app_src/walk/walk.hrb app_src/noodle/noodle.hrb \
+           app_src/beepdown/beepdown.hrb app_src/color/color.hrb app_src/color2/color2.hrb \
+           app_src/sosu/sosu.hrb app_src/sosu2/sosu2.hrb app_src/sosu3/sosu3.hrb \
+           app_src/type/type.hrb app_src/iroha/iroha.hrb app_src/chklang/chklang.hrb \
+           app_src/notrec/notrec.hrb app_src/bball/bball.hrb app_src/invader/invader.hrb \
+           app_src/calc/calc.hrb app_src/tview/tview.hrb app_src/mmlplay/mmlplay.hrb app_src/gview/gview.hrb
 
 # --- Data files copied onto the floppy image ---
 DATA_FILES = app_data/textdata/euc.txt \
@@ -62,7 +62,7 @@ clean:
 	$(MAKE) -C haribote clean
 	$(MAKE) -C apilib clean
 	$(MAKE) -C stdlib clean
-	@for d in $(APPS); do $(MAKE) -C $$d clean || true; done
+	@for d in $(APPS); do $(MAKE) -C app_src/$$d clean || true; done
 	-$(DEL) haribote.img
 
 # --- 4. make qemu: boot the image in QEMU ---

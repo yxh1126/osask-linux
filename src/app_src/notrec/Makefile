@@ -2,4 +2,4 @@ APP      = notrec
 STACK    = 11k
 MALLOC   = 0k
 
-include ../app.mk
+include ../../app.mk

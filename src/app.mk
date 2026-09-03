@@ -35,7 +35,7 @@ DEL       = rm -f
 CFLAGS   = -m32 -ffreestanding -fno-pic -fno-pie -fno-stack-protector \
            -fno-builtin -fno-exceptions -nostdlib -Wall -Wextra -O2 \
            -Wno-array-bounds \
-           -fno-asynchronous-unwind-tables -I$(INCPATH) -I$(APILIB) -I$(STDLIB) -I../
+           -fno-asynchronous-unwind-tables -I$(INCPATH) -I$(APILIB) -I$(STDLIB) -I$(SRCPATH)
 # -Wno-array-bounds: gcc -O2 mis-reports fixed MMIO address casts
 # (e.g. (int *)0x0fe4) as zero-size array accesses. These are legitimate
 # bare-metal memory-mapped locations used by the OS and applications.
