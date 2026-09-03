@@ -2,4 +2,4 @@ APP      = sosu3
 STACK    = 1k
 MALLOC   = 42k
 
-include ../../app.mk
+include ../app.mk
