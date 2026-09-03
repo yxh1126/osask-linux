@@ -1,7 +1,7 @@
 # Makefile for Haribote OS libraries (lib/)
 # Builds apilib.a (nasm) and stdlib.a (gcc -m32) in one place.
 # Both archives are consumed by the kernel (kernel/Makefile) and apps
-# (app_src/app.mk) via the paths lib/apilib.a and lib/stdlib.a.
+# (app/app.mk) via the paths lib/apilib.a and lib/stdlib.a.
 
 NASM      = nasm
 CC        = gcc

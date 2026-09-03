@@ -24,22 +24,22 @@ APPS = a hello3 hello4 hello5 winhelo winhelo2 winhelo3 \
        type iroha chklang notrec bball invader \
        calc tview mmlplay gview
 
-APP_HRBS = app_src/a/a.hrb app_src/hello3/hello3.hrb app_src/hello4/hello4.hrb app_src/hello5/hello5.hrb \
-           app_src/winhelo/winhelo.hrb app_src/winhelo2/winhelo2.hrb app_src/winhelo3/winhelo3.hrb \
-           app_src/star1/star1.hrb app_src/stars/stars.hrb app_src/stars2/stars2.hrb \
-           app_src/lines/lines.hrb app_src/walk/walk.hrb app_src/noodle/noodle.hrb \
-           app_src/beepdown/beepdown.hrb app_src/color/color.hrb app_src/color2/color2.hrb \
-           app_src/sosu/sosu.hrb app_src/sosu2/sosu2.hrb app_src/sosu3/sosu3.hrb \
-           app_src/type/type.hrb app_src/iroha/iroha.hrb app_src/chklang/chklang.hrb \
-           app_src/notrec/notrec.hrb app_src/bball/bball.hrb app_src/invader/invader.hrb \
-           app_src/calc/calc.hrb app_src/tview/tview.hrb app_src/mmlplay/mmlplay.hrb app_src/gview/gview.hrb
+APP_HRBS = app/a/a.hrb app/hello3/hello3.hrb app/hello4/hello4.hrb app/hello5/hello5.hrb \
+           app/winhelo/winhelo.hrb app/winhelo2/winhelo2.hrb app/winhelo3/winhelo3.hrb \
+           app/star1/star1.hrb app/stars/stars.hrb app/stars2/stars2.hrb \
+           app/lines/lines.hrb app/walk/walk.hrb app/noodle/noodle.hrb \
+           app/beepdown/beepdown.hrb app/color/color.hrb app/color2/color2.hrb \
+           app/sosu/sosu.hrb app/sosu2/sosu2.hrb app/sosu3/sosu3.hrb \
+           app/type/type.hrb app/iroha/iroha.hrb app/chklang/chklang.hrb \
+           app/notrec/notrec.hrb app/bball/bball.hrb app/invader/invader.hrb \
+           app/calc/calc.hrb app/tview/tview.hrb app/mmlplay/mmlplay.hrb app/gview/gview.hrb
 
 # --- Data files copied onto the floppy image ---
-DATA_FILES = app_src/data/textdata/euc.txt \
-             app_src/data/mmldata/kirakira.mml app_src/data/mmldata/fujisan.mml \
-             app_src/data/mmldata/daigo.mml app_src/data/mmldata/daiku.mml \
-             app_src/data/pictdata/fujisan.jpg app_src/data/pictdata/night.bmp \
-             app_src/data/nihongo/nihongo.fnt
+DATA_FILES = app/data/textdata/euc.txt \
+             app/data/mmldata/kirakira.mml app/data/mmldata/fujisan.mml \
+             app/data/mmldata/daigo.mml app/data/mmldata/daiku.mml \
+             app/data/pictdata/fujisan.jpg app/data/pictdata/night.bmp \
+             app/data/nihongo/nihongo.fnt
 
 # --- 1. make: build all source code (kernel, libraries, apps) ---
 default: kernel/ipl10.bin kernel/haribote.sys \
@@ -71,7 +71,7 @@ haribote.img: default $(DATA_FILES) Makefile build/mkimg.sh
 clean:
 	$(MAKE) -C kernel clean
 	$(MAKE) -C lib clean
-	@for d in $(APPS); do $(MAKE) -C app_src/$$d clean || true; done
+	@for d in $(APPS); do $(MAKE) -C app/$$d clean || true; done
 	-$(DEL) $(BUILD)libc.o haribote.img
 
 # --- 4. make qemu: boot the image in QEMU ---

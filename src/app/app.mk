@@ -11,7 +11,7 @@
 #   EXTRA_OBJS = extra .o files (e.g. bmp.o jpeg.o for gview)
 
 # --- Tool paths ---
-# app.mk lives in src/app_src/; SRCPATH is src/app_src/, so the build
+# app.mk lives in src/app/; SRCPATH is src/app/, so the build
 # dirs (build/, include/, kernel/, lib/) are one level up in src/.
 APPSRCPATH := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 SRCPATH    := $(dir $(patsubst %/,%,$(APPSRCPATH)))
