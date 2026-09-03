@@ -18,8 +18,7 @@ SRCPATH    := $(dir $(patsubst %/,%,$(APPSRCPATH)))
 ROOTPATH   := $(abspath $(SRCPATH))
 BUILD      := $(SRCPATH)build/
 HARIBOTE   := $(SRCPATH)kernel/
-APILIB     := $(SRCPATH)lib/apilib/
-STDLIB     := $(SRCPATH)lib/stdlib/
+LIBPATH    := $(SRCPATH)lib/
 INCPATH    := $(SRCPATH)include/
 
 # Make the .hrb the default goal when running `make -C <app_dir>`
@@ -38,7 +37,7 @@ DEL       = rm -f
 CFLAGS   = -m32 -ffreestanding -fno-pic -fno-pie -fno-stack-protector \
            -fno-builtin -fno-exceptions -nostdlib -Wall -Wextra -O2 \
            -Wno-array-bounds \
-           -fno-asynchronous-unwind-tables -I$(INCPATH) -I$(APILIB) -I$(STDLIB) -I$(SRCPATH)
+           -fno-asynchronous-unwind-tables -I$(INCPATH) -I$(LIBPATH) -I$(SRCPATH)
 # -Wno-array-bounds: gcc -O2 mis-reports fixed MMIO address casts
 # (e.g. (int *)0x0fe4) as zero-size array accesses. These are legitimate
 # bare-metal memory-mapped locations used by the OS and applications.
@@ -56,7 +55,7 @@ MALLOC_HEX = 0x$(shell printf "%x" $(MALLOC_DEC))
 # --- Link libraries (all apps need apilib + stdlib + libc) ---
 # Link order: stdlib (printf/exit/malloc) calls apilib (api_*) and libc (vsprintf).
 # Use --start-group to resolve circular dependencies.
-LIB_DEPS = $(STDLIB)stdlib.a $(APILIB)apilib.a $(BUILD)libc.o
+LIB_DEPS = $(LIBPATH)stdlib.a $(LIBPATH)apilib.a $(BUILD)libc.o
 LIBS = --start-group $(LIB_DEPS) --end-group
 
 # --- Per-app linker script generated from template ---
@@ -94,13 +93,11 @@ run: haribote.img
 		-display gtk
 
 full:
-	$(MAKE) -C $(APILIB)
-	$(MAKE) -C $(STDLIB)
+	$(MAKE) -C $(LIBPATH)
 	$(MAKE) $(APP).hrb
 
 run_full:
-	$(MAKE) -C $(APILIB)
-	$(MAKE) -C $(STDLIB)
+	$(MAKE) -C $(LIBPATH)
 	$(MAKE) -C $(HARIBOTE)
 	$(MAKE) run
 

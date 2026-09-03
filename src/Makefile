@@ -43,16 +43,13 @@ DATA_FILES = app_src/data/textdata/euc.txt \
 
 # --- 1. make: build all source code (kernel, libraries, apps) ---
 default: kernel/ipl10.bin kernel/haribote.sys \
-         lib/apilib/apilib.a lib/stdlib/stdlib.a $(BUILD)libc.o $(APP_HRBS)
+         lib/apilib.a lib/stdlib.a $(BUILD)libc.o $(APP_HRBS)
 
 kernel/ipl10.bin kernel/haribote.sys:
 	$(MAKE) -C kernel
 
-lib/apilib/apilib.a:
-	$(MAKE) -C lib/apilib
-
-lib/stdlib/stdlib.a:
-	$(MAKE) -C lib/stdlib
+lib/apilib.a lib/stdlib.a:
+	$(MAKE) -C lib
 
 # Freestanding C library (memset/vsprintf/etc.) used by kernel and apps.
 # Explicit rule so it builds with proper CFLAGS (fixes -Wbuiltin-declaration-mismatch)
@@ -60,7 +57,7 @@ lib/stdlib/stdlib.a:
 $(BUILD)libc.o: $(BUILD)libc.c Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(APP_HRBS): lib/apilib/apilib.a lib/stdlib/stdlib.a kernel/haribote.sys
+$(APP_HRBS): lib/apilib.a lib/stdlib.a kernel/haribote.sys
 	@dir=$(dir $@); $(MAKE) -C $$dir
 
 # --- 2. make img: generate the final boot floppy image ---
@@ -73,8 +70,7 @@ haribote.img: default $(DATA_FILES) Makefile build/mkimg.sh
 # --- 3. make clean: remove all build files and image ---
 clean:
 	$(MAKE) -C kernel clean
-	$(MAKE) -C lib/apilib clean
-	$(MAKE) -C lib/stdlib clean
+	$(MAKE) -C lib clean
 	@for d in $(APPS); do $(MAKE) -C app_src/$$d clean || true; done
 	-$(DEL) $(BUILD)libc.o haribote.img
 
