@@ -28,7 +28,7 @@ APP_HRBS = a/a.hrb hello3/hello3.hrb hello4/hello4.hrb hello5/hello5.hrb \
            calc/calc.hrb tview/tview.hrb mmlplay/mmlplay.hrb gview/gview.hrb
 
 # --- Data files copied onto the floppy image ---
-DATA_FILES = euc.txt \
+DATA_FILES = textdata/euc.txt \
              mmldata/kirakira.mml mmldata/fujisan.mml \
              mmldata/daigo.mml mmldata/daiku.mml \
              pictdata/fujisan.jpg pictdata/night.bmp \
