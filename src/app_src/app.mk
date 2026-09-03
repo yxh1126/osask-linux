@@ -12,14 +12,14 @@
 
 # --- Tool paths ---
 # app.mk lives in src/app_src/; SRCPATH is src/app_src/, so the build
-# dirs (build/, kernel/, apilib/, stdlib/) are one level up in src/.
+# dirs (build/, include/, kernel/, lib/) are one level up in src/.
 APPSRCPATH := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 SRCPATH    := $(dir $(patsubst %/,%,$(APPSRCPATH)))
 ROOTPATH   := $(abspath $(SRCPATH))
 BUILD      := $(SRCPATH)build/
 HARIBOTE   := $(SRCPATH)kernel/
-APILIB     := $(SRCPATH)apilib/
-STDLIB     := $(SRCPATH)stdlib/
+APILIB     := $(SRCPATH)lib/apilib/
+STDLIB     := $(SRCPATH)lib/stdlib/
 INCPATH    := $(SRCPATH)include/
 
 # Make the .hrb the default goal when running `make -C <app_dir>`

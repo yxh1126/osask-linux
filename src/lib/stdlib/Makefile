@@ -5,20 +5,20 @@ CC        = gcc
 AR        = ar
 DEL       = rm -f
 
-BUILD     = ../build/
-INCPATH   = ../include/
+BUILD     = ../../build/
+INCPATH   = ../../include/
 
 CFLAGS   = -m32 -ffreestanding -fno-pic -fno-pie -fno-stack-protector \
            -fno-builtin -fno-exceptions -nostdlib -nostdinc \
            -fno-asynchronous-unwind-tables -Wall -Wextra -O2 \
-           -I$(INCPATH) -I../
+           -I$(INCPATH) -I../../
 
 default: stdlib.a
 
 stdlib.a: stdlib.o Makefile
 	$(AR) rcs $@ stdlib.o
 
-%.o: %.c ../include/stdlib.h ../include/apilib.h Makefile
+%.o: %.c ../../include/stdlib.h ../../include/apilib.h Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

@@ -5,7 +5,7 @@ NASM      = nasm
 AR        = ar
 DEL       = rm -f
 
-BUILD     = ../build/
+BUILD     = ../../build/
 NASMFLAGS = -f elf32
 
 OBJS_API = apilib.o
